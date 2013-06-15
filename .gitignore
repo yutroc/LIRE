@@ -54,6 +54,11 @@ build/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+*.avi
+*.mp4
+*.webm
+*.ogv
+*.flv
 *_i.c
 *_p.c
 *.ilk
