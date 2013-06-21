@@ -15,4 +15,8 @@
 
 
     End Sub
+
+    Protected Sub TextBoxUsuario_TextChanged(ByVal sender As Object, ByVal e As EventArgs) Handles TextBoxUsuario.TextChanged
+
+    End Sub
 End Class

@@ -4,34 +4,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Actividades<br />
         &nbsp;</h2>
-    <asp:DropDownList ID="DropDownListUsuarios" runat="server" 
-            AutoPostBack="True" DataSourceID="SqlDataSourceUsuarios" 
-            DataTextField="username" DataValueField="username" Width="96px">
-        </asp:DropDownList>
+    <asp:Label ID="Label1" runat="server" Text="Usuario"></asp:Label>
+    <asp:TextBox ID="TextBoxUsuario" runat="server" AutoPostBack="True"></asp:TextBox>
         <asp:SqlDataSource ID="SqlDataSourceUsuarios" runat="server" 
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
             SelectCommand="SELECT * FROM [Usuario]"></asp:SqlDataSource>
         <asp:GridView ID="GridViewActividades" runat="server" AllowPaging="True" 
-            AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id_actividad" 
+            AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID" 
             DataSourceID="SqlDataSourceActividades" CellPadding="4" 
         ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="id_actividad" HeaderText="id actividad" 
-                    ReadOnly="True" SortExpression="id_actividad" />
-                <asp:BoundField DataField="username" HeaderText="Nombre de usuario" 
-                    SortExpression="username" />
-                <asp:BoundField DataField="fecha" HeaderText="Fecha" SortExpression="fecha" />
-                <asp:BoundField DataField="id_tipo_actividad" HeaderText="id Tipo actividad" 
-                    SortExpression="id_tipo_actividad" />
-                <asp:BoundField DataField="privacidad" HeaderText="Privacidad" 
-                    SortExpression="privacidad" />
-                <asp:BoundField DataField="detalle" HeaderText="Detalle" 
-                    SortExpression="detalle" />
-                <asp:BoundField DataField="url" HeaderText="Url" SortExpression="url" />
-                <asp:BoundField DataField="ip_cliente" HeaderText="Ip del cliente" 
-                    SortExpression="ip_cliente" />
-                <asp:CommandField ShowSelectButton="True"   />
+                <asp:BoundField DataField="ID" HeaderText="ID" 
+                    ReadOnly="True" SortExpression="ID" InsertVisible="False" />
+                <asp:BoundField DataField="Username" HeaderText="Username" 
+                    SortExpression="Username" />
+                <asp:BoundField DataField="Fecha Registro" HeaderText="Fecha Registro" 
+                    SortExpression="Fecha Registro" />
+                <asp:BoundField DataField="Privacidad" HeaderText="Privacidad" 
+                    SortExpression="Privacidad" />
+                <asp:BoundField DataField="Detalle" HeaderText="Detalle" 
+                    SortExpression="Detalle" />
+                <asp:BoundField DataField="URL" HeaderText="URL" 
+                    SortExpression="URL" />
+                <asp:BoundField DataField="IP" HeaderText="IP" SortExpression="IP" />
+                <asp:BoundField DataField="Tipo Actividad" HeaderText="Tipo Actividad" 
+                    SortExpression="Tipo Actividad" />
 
             </Columns>
             <EditRowStyle BackColor="#7C6F57" />
@@ -49,8 +47,9 @@
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
             DeleteCommand="DELETE FROM [Actividad] WHERE [id_actividad] = @id_actividad" 
             InsertCommand="INSERT INTO [Actividad] ([id_actividad], [username], [fecha], [id_tipo_actividad], [privacidad], [detalle], [url], [ip_cliente]) VALUES (@id_actividad, @username, @fecha, @id_tipo_actividad, @privacidad, @detalle, @url, @ip_cliente)" 
-            SelectCommand="SELECT * FROM [Actividad] WHERE (([username] = @username) AND ([username] = @username2))" 
+            SelectCommand="SELECT Actividad.id_actividad AS ID, Actividad.username AS Username, Actividad.fecha AS [Fecha Registro], Actividad.privacidad AS Privacidad, Actividad.detalle AS Detalle, Actividad.url AS URL, Actividad.ip_cliente AS IP, Tipo_Actividad.nombre AS [Tipo Actividad] FROM Actividad INNER JOIN Tipo_Actividad ON Actividad.id_tipo_actividad = Tipo_Actividad.id_tipo_actividad WHERE (Actividad.username LIKE '%' + @username + '%')" 
             
+        
         UpdateCommand="UPDATE [Actividad] SET [username] = @username, [fecha] = @fecha, [id_tipo_actividad] = @id_tipo_actividad, [privacidad] = @privacidad, [detalle] = @detalle, [url] = @url, [ip_cliente] = @ip_cliente WHERE [id_actividad] = @id_actividad">
             <DeleteParameters>
                 <asp:Parameter Name="id_actividad" Type="Decimal" />
@@ -66,10 +65,8 @@
                 <asp:Parameter Name="ip_cliente" Type="String" />
             </InsertParameters>
             <SelectParameters>
-                <asp:ControlParameter ControlID="DropDownListUsuarios" Name="username" 
-                    PropertyName="SelectedValue" Type="String" />
-                <asp:ControlParameter ControlID="DropDownListUsuarios" Name="username2" 
-                    PropertyName="SelectedValue" Type="String" />
+                <asp:ControlParameter ControlID="TextBoxUsuario" Name="username" 
+                    PropertyName="Text" Type="String" DefaultValue="%" />
             </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="username" Type="String" />

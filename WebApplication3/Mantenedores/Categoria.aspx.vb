@@ -23,4 +23,9 @@
     Protected Sub FormViewCategoria_ItemUpdated(sender As Object, e As System.Web.UI.WebControls.FormViewUpdatedEventArgs) Handles FormViewCategoria.ItemUpdated
         Response.Redirect("Categoria.aspx")
     End Sub
+
+    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
+        Session.Remove("id")
+        FormViewCategoria.ChangeMode(FormViewMode.Insert)
+    End Sub
 End Class

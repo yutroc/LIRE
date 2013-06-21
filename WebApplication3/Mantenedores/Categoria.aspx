@@ -5,8 +5,11 @@
     <h2>
         Categoria</h2>
     <p>
+        <asp:Button ID="Button1" runat="server" Text="Agregar Categoria" />
+    </p>
+    <p>
         <asp:GridView ID="GridViewCategoria" runat="server" AutoGenerateColumns="False" 
-            DataKeyNames="id_categoria" DataSourceID="SqlDataSourceCategoria1" 
+            DataKeyNames="id_categoria" DataSourceID="SqlDataSourceCategorias" 
             AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
@@ -27,14 +30,14 @@
             <SortedDescendingCellStyle BackColor="#D4DFE1" />
             <SortedDescendingHeaderStyle BackColor="#15524A" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSourceCategoria1" runat="server" 
+        <asp:SqlDataSource ID="SqlDataSourceCategorias" runat="server" 
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
             SelectCommand="SELECT * FROM [Categoria]">
         </asp:SqlDataSource>
     </p>
     <p>
         <asp:FormView ID="FormViewCategoria" runat="server" DataKeyNames="id_categoria" 
-            DataSourceID="SqlDataCategoria2" CellPadding="4" ForeColor="#333333">
+            DataSourceID="SqlDataSourceCategoria" CellPadding="4" ForeColor="#333333">
             <EditItemTemplate>
                 <table>
                     <tr>
@@ -63,11 +66,17 @@
                 <table>
                     <tr>
                         <td>nombre:</td>
-                        <td><asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' /></td>
+                        <td><asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                ControlToValidate="nombreTextBox">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td>descripcion: </td>
-                        <td><asp:TextBox ID="descripcionTextBox" runat="server" Text='<%# Bind("descripcion") %>' /></td>
+                        <td><asp:TextBox ID="descripcionTextBox" runat="server" Text='<%# Bind("descripcion") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                ControlToValidate="descripcionTextBox">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                 </table>
                 <br />
@@ -75,8 +84,6 @@
                     CommandName="Insert" Text="Insertar"></asp:LinkButton>
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
                     CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
-                    <asp:ValidationSummary runat="server" DisplayMode="SingleParagraph" ShowSummary="True" ShowMessageBox="False" ID="valSumario" 
-                HeaderText="<div align=center><u>Se han encontrado los siguientes errores</u>: </div>" Font-Size="10pt" Font-Names="Verdana" /> 
             </InsertItemTemplate>
             <ItemTemplate>
                 <table>
@@ -98,18 +105,17 @@
                     CommandName="Edit" Text="Editar" />
                 &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" 
                     CommandName="Delete" Text="Eliminar" onclientclick="return confirm(&quot;Seguro que desea eliminar ?&quot;);" />
-                &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" 
-                    CommandName="New" Text="Nuevo" />
                     
             </ItemTemplate>
             <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
             <RowStyle BackColor="#E3EAEB" />
         </asp:FormView>
-        <asp:SqlDataSource ID="SqlDataCategoria2" runat="server" 
+        <asp:SqlDataSource ID="SqlDataSourceCategoria" runat="server" 
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
             DeleteCommand="DELETE FROM [Categoria] WHERE [id_categoria] = @id_categoria" 
             InsertCommand="INSERT INTO [Categoria] ([nombre], [descripcion]) VALUES (@nombre, @descripcion)" 
             SelectCommand="SELECT * FROM [Categoria] WHERE ([id_categoria] = @id_categoria)" 
+            
             UpdateCommand="UPDATE [Categoria] SET [nombre] = @nombre, [descripcion] = @descripcion WHERE [id_categoria] = @id_categoria">
             <DeleteParameters>
                 <asp:Parameter Name="id_categoria" Type="Decimal" />
