@@ -9,7 +9,7 @@
         &nbsp;<asp:GridView ID="GridViewRol" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id_rol" 
             DataSourceID="SqlDataSourceRol" CellPadding="4" ForeColor="#333333" 
-            GridLines="None">
+            GridLines="None" ShowFooter="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="id_rol" HeaderText="id Rol" InsertVisible="False" 

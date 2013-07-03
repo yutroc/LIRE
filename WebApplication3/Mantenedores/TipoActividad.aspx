@@ -9,7 +9,8 @@
         <asp:GridView ID="GridViewTipoActividad" runat="server" 
             AutoGenerateColumns="False" DataKeyNames="id_tipo_actividad" 
             DataSourceID="SqlDataSourceTipoActividad" AllowPaging="True" 
-            AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None">
+            AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" 
+            ShowFooter="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="id_tipo_actividad" HeaderText="id_tipo_actividad" 

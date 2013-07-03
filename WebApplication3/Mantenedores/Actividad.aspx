@@ -6,18 +6,17 @@
         &nbsp;</h2>
     <asp:Label ID="Label1" runat="server" Text="Usuario"></asp:Label>
     <asp:TextBox ID="TextBoxUsuario" runat="server" AutoPostBack="True"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Buscar" />
         <asp:SqlDataSource ID="SqlDataSourceUsuarios" runat="server" 
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
             SelectCommand="SELECT * FROM [Usuario]"></asp:SqlDataSource>
         <asp:GridView ID="GridViewActividades" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID" 
             DataSourceID="SqlDataSourceActividades" CellPadding="4" 
-        ForeColor="#333333" GridLines="None">
+        ForeColor="#333333" GridLines="None" ShowFooter="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID" 
-                    ReadOnly="True" SortExpression="ID" InsertVisible="False" />
-                <asp:BoundField DataField="Username" HeaderText="Username" 
+                <asp:BoundField DataField="Username" HeaderText="Usuario" 
                     SortExpression="Username" />
                 <asp:BoundField DataField="Fecha Registro" HeaderText="Fecha Registro" 
                     SortExpression="Fecha Registro" />
@@ -27,8 +26,9 @@
                     SortExpression="Detalle" />
                 <asp:BoundField DataField="URL" HeaderText="URL" 
                     SortExpression="URL" />
-                <asp:BoundField DataField="IP" HeaderText="IP" SortExpression="IP" />
-                <asp:BoundField DataField="Tipo Actividad" HeaderText="Tipo Actividad" 
+                <asp:BoundField DataField="IP" HeaderText="IP del usuario" 
+                    SortExpression="IP" />
+                <asp:BoundField DataField="Tipo Actividad" HeaderText="Tipo de  Actividad" 
                     SortExpression="Tipo Actividad" />
 
             </Columns>

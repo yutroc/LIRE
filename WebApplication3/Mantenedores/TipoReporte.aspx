@@ -4,10 +4,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <h2>Tipo de Reporte</h2>
     <p>
+        <asp:Button ID="Button1" runat="server" Text="Agregar un tipo de reporte" />
+    </p>
+    <p>
         <br />
         <asp:GridView ID="GridViewTipoReporte" runat="server" AutoGenerateColumns="False" 
             DataKeyNames="id_tipo_reporte" DataSourceID="SqlDataSourceTipo_Reporte1" 
-            AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None">
+            AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" 
+            AllowSorting="True" ShowFooter="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" 
@@ -51,14 +55,16 @@
             <EditItemTemplate>
                 <table>
                     <tr>
-                        <td>id_tipo_reporte:</td>
-                        <td><asp:Label ID="id_tipo_reporteLabel1" runat="server" Text='<%# Eval("id_tipo_reporte") %>' /></td>
-                    </tr>
-                    <tr>
-                        <td>nombre:</td>
-                        <td><asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' /></td>
+                        <td>Nombre:</td>
+                        <td>
+                            <asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                ControlToValidate="nombreTextBox" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                 </table>
+                <asp:Label ID="id_tipo_reporteLabel1" runat="server" 
+                    Text='<%# Eval("id_tipo_reporte") %>' Visible="False" />
                 <br />
                 <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" 
                     CommandName="Update" Text="Actualizar" />
@@ -71,8 +77,11 @@
             <InsertItemTemplate>
                 <table>
                     <tr>
-                        <td>nombre:</td>
-                        <td><asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' /></td>
+                        <td>Nombre:</td>
+                        <td><asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                ControlToValidate="nombreTextBox" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                 </table>
                 
@@ -80,18 +89,12 @@
                 <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
                     CommandName="Insert" Text="Insertar" />
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
-                    CausesValidation="False" CommandName="Cancel" Text="Cancelar">
-                     <asp:RequiredFieldValidator ID="ErrorNombreLabel" Runat="server" ControlToValidate="nombreTextBox" EnableClientScript="True" Display="None"  
-                ErrorMessage="<br><div align=center><b>Nombre</b> es un campo obligatorio.</div>" /> </asp:LinkButton><asp:ValidationSummary runat="server" DisplayMode="SingleParagraph" ShowSummary="True" ShowMessageBox="False" ID="valSumario" 
-                HeaderText="<div align=center><u>Se han encontrado los siguientes errores</u>: </div>" Font-Size="10pt" Font-Names="Verdana" /> 
+                    CausesValidation="False" CommandName="Cancel" Text="Cancelar"></asp:LinkButton> 
             </InsertItemTemplate>
             <ItemTemplate>
                 <table>
                     <tr>
-                        <td>id_tipo_reporte:</td><td><asp:Label ID="id_tipo_reporteLabel" runat="server" Text='<%# Eval("id_tipo_reporte") %>' /></td>
-                    </tr>
-                    <tr>
-                        <td>nombre:</td><td> <asp:Label ID="nombreLabel" runat="server" Text='<%# Bind("nombre") %>' /></td>
+                        <td>Nombre:</td><td> <asp:Label ID="nombreLabel" runat="server" Text='<%# Bind("nombre") %>' /></td>
                     </tr>
                 </table>
                 <br />
@@ -99,10 +102,7 @@
                     CommandName="Edit" Text="Editar" />
                 &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" 
                     CommandName="Delete" Text="Eliminar" onclientclick="return confirm(&quot;Seguro que desea eliminar ?&quot;);" />
-                &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" 
-                    CommandName="New" Text="Nuevo"> 
-                        
-                    </asp:LinkButton></ItemTemplate><PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                &nbsp;</ItemTemplate><PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
             <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
         </asp:FormView>
         <asp:SqlDataSource ID="SqlDataSourceTipo_Reporte2" runat="server" 

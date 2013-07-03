@@ -10,7 +10,8 @@
     <p>
         <asp:GridView ID="GridViewCategoria" runat="server" AutoGenerateColumns="False" 
             DataKeyNames="id_categoria" DataSourceID="SqlDataSourceCategorias" 
-            AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None">
+            AllowPaging="True" CellPadding="4" ForeColor="#333333" GridLines="None" 
+            AllowSorting="True" ShowFooter="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" 
@@ -41,38 +42,43 @@
             <EditItemTemplate>
                 <table>
                     <tr>
-                        <td>id_categoria:</td>
-                        <td><asp:Label ID="id_categoriaLabel1" runat="server" Text='<%# Eval("id_categoria") %>' /></td>
+                        <td>Nombre:</td>
+                        <td>
+                            <asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                ControlToValidate="nombreTextBox" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
-                        <td>nombre:</td>
-                        <td><asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' /></td>
-                    </tr>
-                    <tr>
-                        <td>descripcion:</td>
-                        <td><asp:TextBox ID="descripcionTextBox" runat="server" Text='<%# Bind("descripcion") %>' /></td>
+                        <td>Descripcion:</td>
+                        <td><asp:TextBox ID="descripcionTextBox" runat="server" Text='<%# Bind("descripcion") %>' />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                                ControlToValidate="descripcionTextBox" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                 </table>                
+                <asp:Label ID="id_categoriaLabel1" runat="server" 
+                    Text='<%# Eval("id_categoria") %>' Visible="False" />
                 <br />
                 <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" 
-                    CommandName="Update" Text="Actualizar" onclientclick="return confirm(&quot;¿ Seguro que desea Actualizar ?&quot;);"/>
+                    CommandName="Update" Text="Actualizar"/>
                 &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" 
                     CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
             </EditItemTemplate>
-            <EditRowStyle BackColor="#7C6F57" />
+            <EditRowStyle BackColor="White" />
             <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
             <InsertItemTemplate>
                 <table>
                     <tr>
-                        <td>nombre:</td>
+                        <td>Nombre:</td>
                         <td><asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                                 ControlToValidate="nombreTextBox">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
-                        <td>descripcion: </td>
+                        <td>Descripcion: </td>
                         <td><asp:TextBox ID="descripcionTextBox" runat="server" Text='<%# Bind("descripcion") %>' />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                                 ControlToValidate="descripcionTextBox">*</asp:RequiredFieldValidator>
@@ -88,15 +94,11 @@
             <ItemTemplate>
                 <table>
                 <tr>
-                    <td>id_categoria:</td>
-                    <td><asp:Label ID="id_categoriaLabel" runat="server" Text='<%# Eval("id_categoria") %>' /></td>
-                </tr>
-                <tr>
-                    <td>nombre:</td>
+                    <td>Nombre:</td>
                     <td><asp:Label ID="nombreLabel" runat="server" Text='<%# Bind("nombre") %>' /></td>
                 </tr>
                 <tr>
-                    <td>descripcion:</td>
+                    <td>Descripcion:</td>
                     <td><asp:Label ID="descripcionLabel" runat="server" Text='<%# Bind("descripcion") %>' /></td>
                 </tr>
                 </table>

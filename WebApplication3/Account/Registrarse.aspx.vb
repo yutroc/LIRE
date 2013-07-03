@@ -21,7 +21,7 @@
         Else
 
 
-            Me.LabelMensaje.Text = "Llene todos los campos "
+            Me.LabelMensaje.Text = "No se a creado el usuario debido a que el nombre de usuario ya existe  "
             Me.LabelMensaje.ForeColor = Drawing.Color.Red
             Debug.WriteLine("dddddddd")
 
