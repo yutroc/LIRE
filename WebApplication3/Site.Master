@@ -25,11 +25,14 @@
                     </AnonymousTemplate>
                     <LoggedInTemplate>
                         Pantalla de bienvenida <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
-                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/"/> ]
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" 
+                            LogoutText="Cerrar sesión" LogoutPageUrl="~/" onloggedout="Page_Load" 
+                            onloggingout="HeadLoginStatus_LoggingOut"/> ]
                     </LoggedInTemplate>
                 </asp:LoginView>
             </div>
             <div class="clear hideSkiplink">
+            <% If (Session("idRol") = 3) Then%>
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Página principal"/>
@@ -52,7 +55,32 @@
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="Acerca de"/>
                     </Items>
                 </asp:Menu>
+                <%   ElseIf (Session("idRol") = 1) Then%>
+
+                <asp:Menu ID="Menu1" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Página principal"/>
+                       <asp:MenuItem NavigateUrl="~/SubirVideo.aspx" Text="Subir video" 
+                            Value="Subir video"></asp:MenuItem>
+                        
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="Acerca de"/>
+                    </Items>
+                </asp:Menu>
+                 <%  Else
+                         
+                 %>
+                  <asp:Menu ID="Menu2" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Página principal"/>
+                       
+                        
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="Acerca de"/>
+                    </Items>
+                </asp:Menu>
+                <%End If
+                %>>
             </div>
+
         </div>
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>

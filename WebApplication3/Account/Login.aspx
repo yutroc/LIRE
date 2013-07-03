@@ -6,11 +6,15 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
         Iniciar sesión
+
     </h2>
     <p>
-        Especifique su nombre de usuario y contraseña.
-        <asp:HyperLink ID="RegisterHyperLink" runat="server" EnableViewState="false">Registrarse</asp:HyperLink> si no tiene una cuenta.
+          
+
     </p>
+    <p>
+        Especifique su nombre de usuario y contraseña.
+        </p>
     <asp:Login ID="LoginUser" runat="server" EnableViewState="false" RenderOuterTable="false">
         <LayoutTemplate>
             <span class="failureNotification">
@@ -46,4 +50,5 @@
             </div>
         </LayoutTemplate>
     </asp:Login>
-</asp:Content>
+        <asp:LinkButton ID="LinkButton1" runat="server">Crear una cuenta</asp:LinkButton>
+        </asp:Content>

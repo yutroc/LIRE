@@ -11,16 +11,34 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Login
+Partial Public Class Registrarse
 
     '''<summary>
-    '''Control LoginUser.
+    '''Control LabelMensaje.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents LoginUser As Global.System.Web.UI.WebControls.Login
+    Protected WithEvents LabelMensaje As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control FormViewCrearUser.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents FormViewCrearUser As Global.System.Web.UI.WebControls.FormView
+
+    '''<summary>
+    '''Control SqlDataSourceUsuario.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents SqlDataSourceUsuario As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
     '''Control LinkButton1.
