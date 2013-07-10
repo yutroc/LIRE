@@ -3,51 +3,58 @@
 Public Class SubirVideo
     Inherits System.Web.UI.Page
 
-    Dim videoOriginalPath As String = "~/Videos/Original/"
-    Dim videoConvertedPath = "~/Videos/Converted/"
+    ReadOnly _videoOriginalPath As String = "~/Videos/Original/"
+    ReadOnly _videoConvertedPath = "~/Videos/Converted/"
+    ReadOnly _imagePath = "~/Imagenes/Videos/"
 
     Dim videoTmpName As String = String.Empty
     Dim videoConvertedName As String = String.Empty
+    Private saveAs As String
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-        Debug.WriteLine("start")
+        saveAs = Server.MapPath(_videoConvertedPath)
     End Sub
-   
 
-    Protected Sub BtnUploadClick(sender As Object, e As EventArgs) Handles btnUpload.Click
+    Protected Function SubirVideo() As Boolean
         Debug.WriteLine("Obtiene archivo")
-        Dim file As HttpPostedFile = videoFile.PostedFile
+        Dim file As HttpPostedFile = Me.videoFile.PostedFile
         Debug.WriteLine("Validar extencion")
         If (Not ValidateVideoExtension(file.FileName)) Then
-
-            lblErrorVideo.Text = "La extension del archivo no es permitido."
-            Return
+            Dim err = RequiredFieldValidator3
+            err.ValidationGroup = "MyGroup"
+            err.IsValid = False
+            err.ErrorMessage = "La extension del archivo no es permitido."
+            Return False
         End If
 
 
         Debug.WriteLine("Validar tamaño")
         If (file.InputStream.Length > 52428800) Then
-
-            lblErrorVideo.Text = "El video no puede exceder los 50MB"
-            Return
+            Dim err = RequiredFieldValidator3
+            err.ValidationGroup = "MyGroup"
+            err.IsValid = False
+            err.ErrorMessage = "El video no puede exceder los 50MB"
+            Return False
         End If
 
 
-        Dim saveAs As String = Server.MapPath(videoOriginalPath)
+        Dim saveAs As String = Server.MapPath(_videoOriginalPath)
         videoTmpName = Guid.NewGuid().ToString()
         Dim originalVideo As String = saveAs + videoTmpName + New FileInfo(file.FileName).Extension
         file.SaveAs(originalVideo)
 
         Debug.WriteLine("Codificar ...")
         If (EncodingVideo(originalVideo)) Then
-            Response.Redirect("VerVideo.aspx?Id=" + videoTmpName)
+            Session.Add("idtemp", videoTmpName)
+            'Response.Redirect("VerVideo.aspx?Id=" + videoTmpName)
+            Return True
 
         Else
-            lblErrorVideo.Text = "Error convirtiendo el video, intente nuevamente"
+            Label1.Text = "Error convirtiendo el video, intente nuevamente"
+            Return False
         End If
 
-    End Sub
+    End Function
 
     Private Function ValidateVideoExtension(ByVal filename As String) As Boolean
         If filename = String.Empty Then
@@ -71,7 +78,6 @@ Public Class SubirVideo
     Private Function EncodingVideo(ByVal originalVideo As String) As Boolean
 
         Dim value = 0
-        Dim saveAs = Server.MapPath(videoConvertedPath)
 
 
         Using enconding As New Process()
@@ -126,7 +132,58 @@ Public Class SubirVideo
                 value = value + 1
             End Using
         Next
-        Debug.WriteLine(value)
+        Debug.WriteLine("Valor igual: " + value.ToString())
         Return True
     End Function
+
+    Protected Sub ButtonSubir_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonSubir.Click
+        Debug.WriteLine(Me.videoFile.FileName)
+        Subiendo.Visible = True
+        SubiendoImagen.Visible = True
+        Dim urlVideo As String
+        Dim urlImagen As String
+        If SubirVideo() Then
+            Debug.WriteLine(_imagePath + videoTmpName)
+            urlVideo = "Videos/Converted/" + videoTmpName + ".ogv"
+            urlImagen = "Imagenes/Videos/" + videoTmpName + ".jpg"
+            SaveFrameFromVideo(urlVideo, urlImagen)
+            Debug.WriteLine("Imagen creada")
+			
+        End If
+        Subiendo.Visible = False
+        SubiendoImagen.Visible = False
+        SqlDataSourceSubirVideo.InsertParameters("nombre").DefaultValue = nombreTextBox.Text
+        SqlDataSourceSubirVideo.InsertParameters("descripcion").DefaultValue = descripcionTextBox.Text
+        SqlDataSourceSubirVideo.InsertParameters("url_miniatura_video").DefaultValue = urlImagen
+        SqlDataSourceSubirVideo.InsertParameters("creador").DefaultValue = Session.Item("username")
+        SqlDataSourceSubirVideo.InsertParameters("nombre_archivo").DefaultValue = videoFile.FileName
+        SqlDataSourceSubirVideo.InsertParameters("url_path_server").DefaultValue = urlVideo
+        SqlDataSourceSubirVideo.InsertParameters("visible").DefaultValue = True
+        SqlDataSourceSubirVideo.InsertParameters("contador").DefaultValue = "0"
+        SqlDataSourceSubirVideo.InsertParameters("id_categoria").DefaultValue = DropDownListCategoria.SelectedItem.Value.ToString()
+        SqlDataSourceSubirVideo.Insert()
+
+        Response.Redirect("VerVideo.aspx?video=" + Session.Item("ID_VIDEO").ToString())
+
+    End Sub
+
+    Private Sub SaveFrameFromVideo(ByVal input As String, ByVal output As String)
+        Using enconding As New Process()
+            enconding.StartInfo.WorkingDirectory = Server.MapPath("~/")
+            enconding.StartInfo.FileName = Server.MapPath("Lib/ffmpeg.exe")
+            Dim arg = " -i " + input + " -r 1 -s 4cif -ss 00:00:03 " + output
+            Debug.WriteLine(arg)
+            enconding.StartInfo.Arguments = arg
+            enconding.StartInfo.UseShellExecute = False
+            enconding.StartInfo.CreateNoWindow = True
+            enconding.StartInfo.RedirectStandardOutput = True
+            enconding.Start()
+            enconding.WaitForExit()
+            enconding.Close()
+        End Using
+    End Sub
+
+    Protected Sub SqlDataSourceSubirVideo_Inserted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.SqlDataSourceStatusEventArgs) Handles SqlDataSourceSubirVideo.Inserted
+        Session.Add("ID_VIDEO", e.Command.Parameters("@ID_VIDEO").Value)
+    End Sub
 End Class

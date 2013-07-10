@@ -11,23 +11,32 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class _Default
+Partial Public Class MasComentado
 
     '''<summary>
-    '''DataList1 control.
+    '''GraficoMasComentado control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DataList1 As Global.System.Web.UI.WebControls.DataList
+    Protected WithEvents GraficoMasComentado As Global.System.Web.UI.DataVisualization.Charting.Chart
 
     '''<summary>
-    '''SqlDataSourceVideos control.
+    '''SqlDataSourceMasComentado control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents SqlDataSourceVideos As Global.System.Web.UI.WebControls.SqlDataSource
+    Protected WithEvents SqlDataSourceMasComentado As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
+    '''GridViewMasComentado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridViewMasComentado As Global.System.Web.UI.WebControls.GridView
 End Class

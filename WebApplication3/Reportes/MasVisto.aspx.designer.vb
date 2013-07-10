@@ -11,59 +11,68 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class Site
+Partial Public Class MasVisto
 
     '''<summary>
-    '''HeadContent control.
+    '''LinkButtonInicio control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HeadContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Protected WithEvents LinkButtonInicio As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''HeadLoginView control.
+    '''LinkButtonFin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HeadLoginView As Global.System.Web.UI.WebControls.LoginView
+    Protected WithEvents LinkButtonFin As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
-    '''NavigationMenu control.
+    '''CalendarInicio control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents NavigationMenu As Global.System.Web.UI.WebControls.Menu
+    Protected WithEvents CalendarInicio As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
-    '''Menu1 control.
+    '''CalendarFin control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Menu1 As Global.System.Web.UI.WebControls.Menu
+    Protected WithEvents CalendarFin As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
-    '''Menu2 control.
+    '''GraficoMasVisto control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Menu2 As Global.System.Web.UI.WebControls.Menu
+    Protected WithEvents GraficoMasVisto As Global.System.Web.UI.DataVisualization.Charting.Chart
 
     '''<summary>
-    '''MainContent control.
+    '''GridViewVMasVisto control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
+    Protected WithEvents GridViewVMasVisto As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''SqlDataSourceMasVisto control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SqlDataSourceMasVisto As Global.System.Web.UI.WebControls.SqlDataSource
 End Class

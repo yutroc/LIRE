@@ -52,6 +52,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -91,13 +92,20 @@
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
-    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\Registrarse.aspx" />
     <Content Include="Lib\ffmpeg.exe" />
     <Content Include="Mantenedores\Actividad.aspx" />
+    <Content Include="Mantenedores\Comentario.aspx" />
     <Content Include="Mantenedores\Rol.aspx" />
     <Content Include="Mantenedores\TipoActividad.aspx" />
     <Content Include="Mantenedores\TipoReporte.aspx" />
     <Content Include="Mantenedores\Usuario.aspx" />
+    <Content Include="Mantenedores\VideoParaComentario.aspx" />
+    <Content Include="Reportar.aspx" />
+    <Content Include="Reportes\MasComentado.aspx" />
+    <Content Include="Reportes\MasReportado.aspx" />
+    <Content Include="Reportes\MasVisto.aspx" />
+    <Content Include="Reportes\UsuariosTops.aspx" />
     <Content Include="Scripts\embed.min.js" />
     <Content Include="Scripts\flowplayer.js" />
     <Content Include="Scripts\flowplayer.min.js" />
@@ -138,6 +146,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="SubirVideo.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="VerUsuario.aspx" />
     <Content Include="VerVideo.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -177,12 +186,12 @@
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Account\Register.aspx.designer.vb">
-      <DependentUpon>Register.aspx</DependentUpon>
+    <Compile Include="Account\Registrarse.aspx.designer.vb">
+      <DependentUpon>Registrarse.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Register.aspx.vb">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
+    <Compile Include="Account\Registrarse.aspx.vb">
+      <DependentUpon>Registrarse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
@@ -190,6 +199,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedores\Comentario.aspx.designer.vb">
+      <DependentUpon>Comentario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedores\Comentario.aspx.vb">
+      <DependentUpon>Comentario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Mantenedores\Rol.aspx.designer.vb">
       <DependentUpon>Rol.aspx</DependentUpon>
@@ -222,6 +238,13 @@
       <DependentUpon>Usuario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Mantenedores\VideoParaComentario.aspx.designer.vb">
+      <DependentUpon>VideoParaComentario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mantenedores\VideoParaComentario.aspx.vb">
+      <DependentUpon>VideoParaComentario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -247,6 +270,41 @@
     <Compile Include="Mantenedores\Actividad.aspx.vb">
       <DependentUpon>Actividad.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Reportar.aspx.designer.vb">
+      <DependentUpon>Reportar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportar.aspx.vb">
+      <DependentUpon>Reportar.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\MasComentado.aspx.designer.vb">
+      <DependentUpon>MasComentado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\MasComentado.aspx.vb">
+      <DependentUpon>MasComentado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\MasReportado.aspx.designer.vb">
+      <DependentUpon>MasReportado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\MasReportado.aspx.vb">
+      <DependentUpon>MasReportado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\MasVisto.aspx.designer.vb">
+      <DependentUpon>MasVisto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\MasVisto.aspx.vb">
+      <DependentUpon>MasVisto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\UsuariosTops.aspx.designer.vb">
+      <DependentUpon>UsuariosTops.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\UsuariosTops.aspx.vb">
+      <DependentUpon>UsuariosTops.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.vb">
       <DependentUpon>Site.Master</DependentUpon>
@@ -274,6 +332,13 @@
     </Compile>
     <Compile Include="test.aspx.vb">
       <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="VerUsuario.aspx.designer.vb">
+      <DependentUpon>VerUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerUsuario.aspx.vb">
+      <DependentUpon>VerUsuario.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="VerVideo.aspx.designer.vb">

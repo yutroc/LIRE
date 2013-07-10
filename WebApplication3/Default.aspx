@@ -7,11 +7,29 @@
     <h2>
         ASP.NET
     </h2>
-    <p>
-        Para obtener más información acerca de ASP.NET, visite <a href="http://www.asp.net" title="Sitio web de ASP.NET">www.asp.net</a>.
-    </p>
-    <p>
-        También puede encontrar <a href="http://go.microsoft.com/fwlink/?LinkID=152368"
-            title="Documentación de ASP.NET en MSDN">documentación sobre ASP.NET en MSDN</a>.
-    </p>
-</asp:Content>
+    <asp:DataList ID="DataList1" runat="server" DataKeyField="id_video" 
+        DataSourceID="SqlDataSourceVideos" RepeatColumns="4" 
+        RepeatDirection="Horizontal" ShowFooter="False" ShowHeader="False">
+        <ItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" 
+            Font-Strikeout="False" Font-Underline="False" />
+        <ItemTemplate>
+            id_video:
+            <asp:Label ID="id_videoLabel" runat="server" Text='<%# Eval("id_video") %>' />
+            <br />
+            nombre:
+            <asp:Label ID="nombreLabel" runat="server" Text='<%# Eval("nombre") %>' />
+            <br />
+            url_miniatura_video:<br />
+            <a href="<%# "VerVideo.aspx?video=" & Eval("id_video")%>">
+                <asp:Image ID="Image1" runat="server" Height="108px" 
+                ImageUrl='<%# Eval("url_miniatura_video") %>' Width="228px" />
+            </a>
+        <br />
+        </ItemTemplate>
+    </asp:DataList>
+    <asp:SqlDataSource ID="SqlDataSourceVideos" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
+        
+        SelectCommand="SELECT [id_video], [nombre], [url_miniatura_video] FROM [Video]">
+    </asp:SqlDataSource>
+    </asp:Content>

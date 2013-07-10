@@ -41,6 +41,8 @@
                                 Value="Actividad"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Mantenedores/Categoria.aspx" Text="Categoria" 
                                 Value="Categoria"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Mantenedores/VideoParaComentario.aspx" 
+                                Text="Comentario" Value="Comentario"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Mantenedores/Rol.aspx" Text="Rol" Value="Rol">
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Mantenedores/TipoActividad.aspx" 
@@ -49,6 +51,16 @@
                                 Value="Tipo Reporte"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Mantenedores/Usuario.aspx" Text="Usuario" 
                                 Value="Usuario"></asp:MenuItem>
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Reportes" Value="Reportes">
+                            <asp:MenuItem NavigateUrl="~/Reportes/UsuariosTops.aspx" Text="Usuarios Top" 
+                                Value="Usuarios Top"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Reportes/MasComentado.aspx" Text="Más Comentado" 
+                                Value="Más Comentado"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Reportes/MasVisto.aspx" Text="Más Visto" 
+                                Value="Más Visto"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Reportes/MasReportado.aspx" Text="Más Reportado" 
+                                Value="Más Reportado"></asp:MenuItem>
                         </asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/SubirVideo.aspx" Text="Subir video" 
                             Value="Subir video"></asp:MenuItem>
@@ -60,6 +72,8 @@
                 <asp:Menu ID="Menu1" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Página principal"/>
+                        <asp:MenuItem NavigateUrl="~/VerUsuario.aspx" Text="Dashboard" 
+                            Value="Dashboard"></asp:MenuItem>
                        <asp:MenuItem NavigateUrl="~/SubirVideo.aspx" Text="Subir video" 
                             Value="Subir video"></asp:MenuItem>
                         

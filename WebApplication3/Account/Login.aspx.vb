@@ -37,6 +37,7 @@ Public Class Login
                 dr.Read()
                 usuarioEncontrado = True
                 nombreUsuario = dr("username")
+                Session.Add("username", nombreUsuario)
                 Session.Add("password", dr("password"))
                 Session.Add("idRol", dr("id_rol"))
                 Roles.CreateRole("admin")
