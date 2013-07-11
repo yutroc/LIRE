@@ -13,11 +13,9 @@
             ShowFooter="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="id_tipo_actividad" HeaderText="id_tipo_actividad" 
-                    InsertVisible="False" ReadOnly="True" SortExpression="id_tipo_actividad" />
-                <asp:BoundField DataField="nombre" HeaderText="nombre" 
+                <asp:BoundField DataField="nombre" HeaderText="Nombre" 
                     SortExpression="nombre" />
-                <asp:BoundField DataField="decripcion" HeaderText="decripcion" 
+                <asp:BoundField DataField="decripcion" HeaderText="Descripcion" 
                     SortExpression="decripcion" />
             </Columns>
             <EditRowStyle BackColor="#7C6F57" />

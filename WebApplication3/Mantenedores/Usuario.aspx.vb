@@ -18,7 +18,18 @@
     End Sub
 
     Protected Sub FormViewTipoReporte_ItemInserted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewInsertedEventArgs) Handles FormViewUsuario.ItemInserted
-        Response.Redirect("Usuario.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "Item agregado Correctamente"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "No se pudo agregar el Item"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewUsuarios.DataBind()
     End Sub
 
     Protected Sub Calendar1_Load(ByVal sender As Object, ByVal e As EventArgs)
@@ -31,11 +42,33 @@
     End Sub
 
     Protected Sub FormViewUsuario_ItemUpdated(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewUpdatedEventArgs) Handles FormViewUsuario.ItemUpdated
-        Response.Redirect("Usuario.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "Item Actualizado Correctamente"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "No se pudo Actualizar el Item"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewUsuarios.DataBind()
     End Sub
 
     Protected Sub FormViewUsuario_ItemDeleted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewDeletedEventArgs) Handles FormViewUsuario.ItemDeleted
-        Response.Redirect("Usuario.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "Item eliminado Correctamente"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "No se pudo eliminar el Item"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewUsuarios.DataBind()
     End Sub
 
     Protected Sub GridViewUsuarios_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles GridViewUsuarios.RowDataBound

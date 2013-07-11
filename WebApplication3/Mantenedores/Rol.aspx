@@ -12,8 +12,6 @@
             GridLines="None" ShowFooter="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="id_rol" HeaderText="id Rol" InsertVisible="False" 
-                    ReadOnly="True" SortExpression="id_rol" />
                 <asp:BoundField DataField="nombre" HeaderText="Nombre" 
                     SortExpression="nombre" />
                 <asp:BoundField DataField="descripcion" HeaderText="Descripcion" 

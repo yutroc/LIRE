@@ -23,6 +23,15 @@ Partial Public Class TipoReporte
     Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''Control LabelMensajeAlerta.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LabelMensajeAlerta As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Control GridViewTipoReporte.
     '''</summary>
     '''<remarks>

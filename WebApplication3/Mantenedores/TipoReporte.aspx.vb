@@ -12,15 +12,48 @@
     End Sub
 
     Protected Sub FormViewTipoReporte_ItemInserted(sender As Object, e As System.Web.UI.WebControls.FormViewInsertedEventArgs) Handles FormViewTipoReporte.ItemInserted
-        Response.Redirect("TipoReporte.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "Item agregado Correctamente"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "No se pudo agregar el Item"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewTipoReporte.DataBind()
     End Sub
 
     Protected Sub FormViewTipoReporte_ItemDeleted(sender As Object, e As System.Web.UI.WebControls.FormViewDeletedEventArgs) Handles FormViewTipoReporte.ItemDeleted
-        Response.Redirect("TipoReporte.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "Item eliminado Correctamente"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "No se pudo eliminar el Item"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewTipoReporte.DataBind()
     End Sub
 
     Protected Sub FormViewTipoReporte_ItemUpdated(sender As Object, e As System.Web.UI.WebControls.FormViewUpdatedEventArgs) Handles FormViewTipoReporte.ItemUpdated
-        Response.Redirect("TipoReporte.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "Item Actualizado Correctamente"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "No se pudo Actualizar el Item"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewTipoReporte.DataBind()
     End Sub
 
     Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click

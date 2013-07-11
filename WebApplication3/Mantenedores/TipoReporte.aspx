@@ -7,6 +7,7 @@
         <asp:Button ID="Button1" runat="server" Text="Agregar un tipo de reporte" />
     </p>
     <p>
+    <asp:Label ID="LabelMensajeAlerta" runat="server"></asp:Label>
         <br />
         <asp:GridView ID="GridViewTipoReporte" runat="server" AutoGenerateColumns="False" 
             DataKeyNames="id_tipo_reporte" DataSourceID="SqlDataSourceTipo_Reporte1" 

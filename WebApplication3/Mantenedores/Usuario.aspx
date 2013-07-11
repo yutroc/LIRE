@@ -10,6 +10,7 @@
         <asp:Button ID="Button1" runat="server" Text="Agregar Usuario" Width="123px" />
     </h2>
     <p>
+       <asp:Label ID="LabelMensaje" runat="server"></asp:Label>
         <asp:GridView ID="GridViewUsuarios" runat="server" AutoGenerateColumns="False" CellPadding="4"
             DataKeyNames="Username" DataSourceID="SqlDataSourceUsuarios" ForeColor="#333333"
             GridLines="None" AllowPaging="True" ShowFooter="True">

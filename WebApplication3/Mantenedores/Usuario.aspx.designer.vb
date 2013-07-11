@@ -23,6 +23,15 @@ Partial Public Class Usuario
     Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''Control LabelMensaje.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents LabelMensaje As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''Control GridViewUsuarios.
     '''</summary>
     '''<remarks>

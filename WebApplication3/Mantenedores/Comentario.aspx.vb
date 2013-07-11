@@ -8,11 +8,11 @@
     Protected Sub GridViewComentario_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles GridViewComentario.SelectedIndexChanged
         Dim fechaComentario As String
         Dim username As String
-        Dim idCom As Integer
-        idCom = GridViewComentario.SelectedDataKey.Value
-        fechaComentario = GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(3).Text
-        username = GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(0).Text
-        Debug.WriteLine(GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(3).Text)
+        Dim idCom As String
+        idCom = GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(0).Text
+        fechaComentario = GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(4).Text
+        username = GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(1).Text
+        Debug.WriteLine(GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(4).Text)
         Session.Add("usernameComentario", username)
         Session.Add("fechaComentario", fechaComentario)
         Session.Add("idCom", idCom)
@@ -20,17 +20,17 @@
 
     Protected Sub FormViewComentario_ItemDeleted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewDeletedEventArgs) Handles FormViewComentario.ItemDeleted
         'Manejador de Excepciones 
-        'If (e.Exception Is Nothing) Then
-        ' Me.LabelMensajeAlerta.Visible = True
-        ' Me.LabelMensajeAlerta.Text = "Item eliminado Correctamente"
-        'Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Green
-        'Else
-        '   Me.LabelMensajeAlerta.Visible = True
-        '  Me.LabelMensajeAlerta.Text = "No se pudo eliminar el Item"
-        ' Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Red
-        'e.ExceptionHandled = True
-        ' End I
-        'GridViewComentario.DataBind()
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "Item eliminado Correctamente"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "No se pudo eliminar el Item"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewComentario.DataBind()
     End Sub
 
     Protected Sub FormViewComentario_ItemUpdated(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewUpdatedEventArgs) Handles FormViewComentario.ItemUpdated
