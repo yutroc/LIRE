@@ -23,31 +23,67 @@ Partial Public Class VerVideo
     Protected WithEvents FormViewTitulo As Global.System.Web.UI.WebControls.FormView
 
     '''<summary>
-    '''Control FormViewVisitas.
+    '''Control Button3.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents FormViewVisitas As Global.System.Web.UI.WebControls.FormView
+    Protected WithEvents Button3 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Control FormViewDescripcion.
+    '''Control Button.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents FormViewDescripcion As Global.System.Web.UI.WebControls.FormView
+    Protected WithEvents Button As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Control ButtonReportar.
+    '''Control FormView1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ButtonReportar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents FormView1 As Global.System.Web.UI.WebControls.FormView
+
+    '''<summary>
+    '''Control FormView2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents FormView2 As Global.System.Web.UI.WebControls.FormView
+
+    '''<summary>
+    '''Control Button2.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Button2 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Control FormView3.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents FormView3 As Global.System.Web.UI.WebControls.FormView
+
+    '''<summary>
+    '''Control SqlDataSourceReportar.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents SqlDataSourceReportar As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
     '''Control SqlDataSourceComentarios.
@@ -59,15 +95,6 @@ Partial Public Class VerVideo
     Protected WithEvents SqlDataSourceComentarios As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''Control LabelComentar.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents LabelComentar As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''Control comentario.
     '''</summary>
     '''<remarks>
@@ -77,40 +104,22 @@ Partial Public Class VerVideo
     Protected WithEvents comentario As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control RequiredFieldValidatorComentario.
+    '''Control Button1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidatorComentario As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Control ButtonComentar.
+    '''Control DataList1.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents ButtonComentar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''Control LabelComentarios.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents LabelComentarios As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''Control DataListComentarios.
-    '''</summary>
-    '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-    '''</remarks>
-    Protected WithEvents DataListComentarios As Global.System.Web.UI.WebControls.DataList
+    Protected WithEvents DataList1 As Global.System.Web.UI.WebControls.DataList
 
     '''<summary>
     '''Control SqlDataSourceVideo.

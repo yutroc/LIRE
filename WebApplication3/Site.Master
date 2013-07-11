@@ -76,7 +76,8 @@
                             Value="Ver Perfil"></asp:MenuItem>
                        <asp:MenuItem NavigateUrl="~/SubirVideo.aspx" Text="Subir video" 
                             Value="Subir video"></asp:MenuItem>
-                        
+                         <asp:MenuItem NavigateUrl="~/ListaDeReproduccion.aspx" Text="Listas de reproduccion" 
+                            Value="Subir video"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="Acerca de"/>
                     </Items>
                 </asp:Menu>

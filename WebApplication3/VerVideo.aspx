@@ -21,6 +21,8 @@
         </ItemTemplate>
     </asp:FormView>
     <br />
+    <asp:Button ID="Button3" runat="server" Text="Editar video" />
+    <asp:Button ID="Button" runat="server" Text="Eliminar"  OnClientClick="return confirm(&quot;Seguro que lo desea eliminar ?&quot;);" />
     <br />
     <br />
     <div class="flowplayer">
@@ -29,8 +31,7 @@
             <source  src="<%= Convert.ToString(Session("webm")) %>" type='video/webm; codecs="vp8.0, vorbis"'/>
             <source  src="<%= Convert.ToString(Session("ogv")) %>" type='video/ogg; codecs="theora, vorbis"'/>
             <object type="application/x-shockwave-flash" 
-            data="/js/flowplayer-3.2.11.swf" style="width:640px; height:360px" 
-            id="Video" >
+            data="/js/flowplayer-3.2.11.swf" style="width:640px; height:360px" >
                <param name="movie" value="/js/flowplayer-3.2.11.swf" />
                <param name="allowFullScreen" value="true" />
                <param name="wmode" value="transparent" />
@@ -41,7 +42,7 @@
         </video>
     </div>
         <br />
-        <asp:FormView ID="FormViewVisitas" runat="server" 
+        <asp:FormView ID="FormView1" runat="server" 
         DataSourceID="SqlDataSourceVisita">
             <EditItemTemplate>
                 Count:
@@ -66,15 +67,18 @@
                 <asp:Label ID="CountLabel" runat="server" Text='<%# Bind("Count") %>' />
             </ItemTemplate>
     </asp:FormView>
-    <asp:FormView ID="FormViewDescripcion" runat="server" 
-        DataSourceID="SqlDataSourceVideo">
+    <asp:FormView ID="FormView2" runat="server" DataSourceID="SqlDataSourceVideo">
         <ItemTemplate>
             Descripción:
             <asp:Label ID="Label1" runat="server" Text='<%# bind("descripcion") %>'></asp:Label>
         </ItemTemplate>
     </asp:FormView>
-    <asp:Button ID="ButtonReportar" runat="server" Text="Reportar" 
-        OnClientClick="aspnetForm.target ='_blank';"/>
+    <asp:Button ID="Button2" runat="server" Text="Reportar" OnClientClick="aspnetForm.target ='_blank';"/>
+    <asp:FormView ID="FormView3" runat="server" 
+        DataSourceID="SqlDataSourceReportar">
+    </asp:FormView>
+    <asp:SqlDataSource ID="SqlDataSourceReportar" runat="server">
+    </asp:SqlDataSource>
     <br />
 &nbsp;<asp:SqlDataSource ID="SqlDataSourceComentarios" runat="server" 
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
@@ -105,19 +109,14 @@
                 <asp:Parameter DbType="Date" Name="fecha" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:Label ID="LabelComentar" runat="server" Text="Label">Comenta:</asp:Label>
-        <br />
+        Comenta:<br />
         <asp:TextBox ID="comentario" runat="server" Height="67px" Width="263px"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidatorComentario" 
-        runat="server" ControlToValidate="comentario" 
-        ErrorMessage="Comentario no puede ser en Blanco" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
-        <asp:Button ID="ButtonComentar" runat="server" Text="Comentar" />
+        <asp:Button ID="Button1" runat="server" Text="Comentar" />
         <br />
         <br />
         <br />
-        <asp:Label ID="LabelComentarios" runat="server" Text="Label">Comentarios:</asp:Label>
-        <asp:DataList ID="DataListComentarios" runat="server" CellPadding="4" 
+        Comentarios:<asp:DataList ID="DataList1" runat="server" CellPadding="4" 
             DataKeyField="username" DataSourceID="SqlDataSourceComentarios" 
             ForeColor="#333333" Width="342px">
             <AlternatingItemStyle BackColor="White" />
