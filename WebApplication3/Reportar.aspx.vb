@@ -9,13 +9,13 @@ Public Class Reportar
 
     End Sub
 
-    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
+    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonReportar.Click
         Try
             SqlDataSourceReportar.InsertParameters("username").DefaultValue = Session.Item("username")
             SqlDataSourceReportar.InsertParameters("id_video").DefaultValue = Session.Item("ID_VIDEO")
-            SqlDataSourceReportar.InsertParameters("descripcion").DefaultValue = TextBox1.Text
+            SqlDataSourceReportar.InsertParameters("descripcion").DefaultValue = TextBoxTipoReporte.Text
             SqlDataSourceReportar.InsertParameters("fecha").DefaultValue = Date.Now
-            SqlDataSourceReportar.InsertParameters("id_tipo_reporte").DefaultValue = DropDownList1.SelectedItem.Value
+            SqlDataSourceReportar.InsertParameters("id_tipo_reporte").DefaultValue = DropDownListTipoReporte.SelectedItem.Value
             SqlDataSourceReportar.Insert()
         Catch ex As SqlException
             Debug.WriteLine(ex.ToString())

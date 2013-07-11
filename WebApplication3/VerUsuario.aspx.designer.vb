@@ -20,7 +20,7 @@ Partial Public Class VerUsuario
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents FormView1 As Global.System.Web.UI.WebControls.FormView
+    Protected WithEvents FormViewUsuario As Global.System.Web.UI.WebControls.FormView
 
     '''<summary>
     '''Button1 control.
@@ -29,7 +29,7 @@ Partial Public Class VerUsuario
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Button1 As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents ButtonSeguir As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''SqlDataSource1 control.
@@ -47,7 +47,7 @@ Partial Public Class VerUsuario
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DataList1 As Global.System.Web.UI.WebControls.DataList
+    Protected WithEvents DataListVideos As Global.System.Web.UI.WebControls.DataList
 
     '''<summary>
     '''SqlDataSourceVideos control.

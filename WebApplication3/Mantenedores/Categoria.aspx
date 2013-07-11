@@ -7,6 +7,7 @@
     <p>
         <asp:Button ID="Button1" runat="server" Text="Agregar Categoria" />
     </p>
+    <asp:Label ID="LabelMensaje" runat="server" Visible="false"> </asp:Label>
     <p>
         <asp:GridView ID="GridViewCategoria" runat="server" AutoGenerateColumns="False" 
             DataKeyNames="id_categoria" DataSourceID="SqlDataSourceCategorias" 

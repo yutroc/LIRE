@@ -9,32 +9,32 @@
             nombre:<br />
             <asp:TextBox ID="nombreTextBox" runat="server" Text='<%# Bind("nombre") %>' />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                ContolToValidate="nombreTextBox" ErrorMessage="RequiredFieldValidator" 
-                ControlToValidate="nombreTextBox"></asp:RequiredFieldValidator>
+                ContolToValidate="nombreTextBox" ErrorMessage="Campo obligatorio" 
+                ControlToValidate="nombreTextBox" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
             descripcion:<br />
             <asp:TextBox ID="descripcionTextBox" runat="server" Height="76px" 
                 Text='<%# Bind("descripcion") %>' Width="258px" />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                ControlToValidate="descripcionTextBox" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                ControlToValidate="descripcionTextBox" ErrorMessage="Campo obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
             Archivo:<br />
             <asp:FileUpload ID="videoFile" runat="server" />
             <asp:Label ID="Label1" runat="server"></asp:Label>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                ControlToValidate="videoFile" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                ControlToValidate="videoFile" ErrorMessage=" Campo obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
         </p>
         <p>
-            Categoria:<br />
+           Categoria:<br />
             <asp:DropDownList ID="DropDownListCategoria" runat="server" 
                 DataSourceID="SqlDataSourceCategoria" DataTextField="nombre" 
                 DataValueField="id_categoria">
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                 ControlToValidate="DropDownListCategoria" 
-                ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+                ErrorMessage="Campo obligatorio" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:SqlDataSource ID="SqlDataSourceCategoria" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
                 SelectCommand="SELECT [id_categoria], [nombre] FROM [Categoria]">

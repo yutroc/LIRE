@@ -2,7 +2,14 @@
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        If (Session.Item("idRol") <> 1 And Session.Item("idRol") <> 3) Then
+            ButtonReportar.Visible = False
+            LabelComentar.Visible = False
+            comentario.Visible = False
+            ButtonComentar.Visible = False
+            LabelComentarios.Visible = True
+            DataListComentarios.Visible = True
+        End If
 
         If (Request.QueryString("video") IsNot Nothing) Then
             Session.Add("ID_VIDEO", Request.QueryString("video").ToString())
@@ -36,7 +43,7 @@
 
     End Sub
 
-    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
+    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonComentar.Click
         SqlDataSourceComentarios.InsertParameters.Item("texto").DefaultValue = comentario.Text
         SqlDataSourceComentarios.InsertParameters.Item("fecha").DefaultValue = Date.Now.ToString("yyyy-MM-dd HH:mm:ss")
         SqlDataSourceComentarios.InsertParameters.Item("username").DefaultValue = Session.Item("username")
@@ -46,7 +53,7 @@
         SqlDataSourceComentarios.Insert()
     End Sub
 
-    Protected Sub Button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button2.Click
+    Protected Sub Button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonReportar.Click
         Response.Redirect("Reportar.aspx")
     End Sub
 End Class

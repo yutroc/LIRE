@@ -9,7 +9,7 @@
         End If
     End Sub
 
-    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
+    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ButtonSeguir.Click
         SqlDataSourceSeguir.InsertParameters("username").DefaultValue = Session.Item("username")
         SqlDataSourceSeguir.InsertParameters("sigue_a").DefaultValue = Session.Item("user")
         SqlDataSourceSeguir.Insert()

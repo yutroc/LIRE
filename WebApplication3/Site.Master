@@ -72,8 +72,8 @@
                 <asp:Menu ID="Menu1" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Página principal"/>
-                        <asp:MenuItem NavigateUrl="~/VerUsuario.aspx" Text="Dashboard" 
-                            Value="Dashboard"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/VerUsuario.aspx" Text="Ver Perfil" 
+                            Value="Ver Perfil"></asp:MenuItem>
                        <asp:MenuItem NavigateUrl="~/SubirVideo.aspx" Text="Subir video" 
                             Value="Subir video"></asp:MenuItem>
                         
@@ -92,7 +92,7 @@
                     </Items>
                 </asp:Menu>
                 <%End If
-                %>>
+                %>
             </div>
 
         </div>

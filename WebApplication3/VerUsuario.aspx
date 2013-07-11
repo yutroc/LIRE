@@ -3,7 +3,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:FormView ID="FormView1" runat="server" DataKeyNames="username" 
+    <asp:FormView ID="FormViewUsuario" runat="server" DataKeyNames="username" 
         DataSourceID="SqlDataSourceUsuario">
         <EditItemTemplate>
             username:
@@ -55,7 +55,7 @@
     </asp:FormView>
     <%  If (Not Session.Item("user").Equals(Session.Item("username"))) Then
        %>
-            <asp:Button ID="Button1" runat="server" Text="Seguir" />
+            <asp:Button ID="ButtonSeguir" runat="server" Text="Seguir" />
        <%End If%>
     
     <asp:SqlDataSource ID="SqlDataSourceSeguir" runat="server" 
@@ -80,7 +80,7 @@
     </asp:SqlDataSource>
     
     <br />
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="id_video" 
+    <asp:DataList ID="DataListVideos" runat="server" DataKeyField="id_video" 
         DataSourceID="SqlDataSourceVideos">
         <ItemTemplate>
             id_video:

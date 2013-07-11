@@ -7,6 +7,9 @@
     <asp:Label ID="Label1" runat="server" Text="Usuario"></asp:Label>
     <asp:TextBox ID="TextBoxUsuario" runat="server" AutoPostBack="True"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Text="Buscar" />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+        ErrorMessage="Requiere ingresar un Usuario" ForeColor="Red" 
+        ControlToValidate="TextBoxUsuario"></asp:RequiredFieldValidator>
         <asp:SqlDataSource ID="SqlDataSourceUsuarios" runat="server" 
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
             SelectCommand="SELECT * FROM [Usuario]"></asp:SqlDataSource>

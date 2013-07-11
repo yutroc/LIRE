@@ -8,36 +8,44 @@
     Protected Sub GridViewComentario_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles GridViewComentario.SelectedIndexChanged
         Dim fechaComentario As String
         Dim username As String
+        Dim idCom As Integer
+        idCom = GridViewComentario.SelectedDataKey.Value
         fechaComentario = GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(3).Text
-
         username = GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(0).Text
         Debug.WriteLine(GridViewComentario.Rows(GridViewComentario.SelectedIndex).Cells(3).Text)
         Session.Add("usernameComentario", username)
-
         Session.Add("fechaComentario", fechaComentario)
-
-
+        Session.Add("idCom", idCom)
     End Sub
 
-    Protected Sub FFormViewComentario_ItemDeleted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewDeletedEventArgs) Handles FormViewComentario.ItemDeleted
-
-        Response.Redirect("Comentario.aspx")
-    End Sub
-
-    Protected Sub FormViewComentario_ItemInserted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewInsertedEventArgs) Handles FormViewComentario.ItemInserted
-        If (e.Exception Is Nothing) Then
-            Me.LabelMensaje.Text = ""
-            Me.LabelMensaje.ForeColor = Drawing.Color.Green
-        Else
-            Me.LabelMensaje.Text = "Solo un comentario al dia"
-            Me.LabelMensaje.ForeColor = Drawing.Color.Red
-            e.ExceptionHandled = True
-        End If
-        Response.Redirect("Comentario.aspx")
+    Protected Sub FormViewComentario_ItemDeleted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewDeletedEventArgs) Handles FormViewComentario.ItemDeleted
+        'Manejador de Excepciones 
+        'If (e.Exception Is Nothing) Then
+        ' Me.LabelMensajeAlerta.Visible = True
+        ' Me.LabelMensajeAlerta.Text = "Item eliminado Correctamente"
+        'Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Green
+        'Else
+        '   Me.LabelMensajeAlerta.Visible = True
+        '  Me.LabelMensajeAlerta.Text = "No se pudo eliminar el Item"
+        ' Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Red
+        'e.ExceptionHandled = True
+        ' End I
+        'GridViewComentario.DataBind()
     End Sub
 
     Protected Sub FormViewComentario_ItemUpdated(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewUpdatedEventArgs) Handles FormViewComentario.ItemUpdated
-        Response.Redirect("Comentario.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "Item Actualizado Correctamente"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensajeAlerta.Visible = True
+            Me.LabelMensajeAlerta.Text = "No se pudo actualizar el Item"
+            Me.LabelMensajeAlerta.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewComentario.DataBind()
     End Sub
 
     Protected Sub LinkButton1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles LinkButton1.Click
@@ -82,7 +90,11 @@
         End If
     End Sub
 
-    Protected Sub FormViewComentario_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewPageEventArgs) Handles FormViewComentario.PageIndexChanging
+    Protected Sub FormViewComentario_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewPageEventArgs)
 
+    End Sub
+
+    Protected Sub FormViewComentario_ItemInserted(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewInsertedEventArgs) Handles FormViewComentario.ItemInserted
+        Response.Redirect("Comentario.aspx")
     End Sub
 End Class

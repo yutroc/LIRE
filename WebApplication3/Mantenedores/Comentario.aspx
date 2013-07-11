@@ -1,10 +1,19 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="Comentario.aspx.vb" Inherits="WebApplication3.Comentario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .style1
+        {
+            text-align: center;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <h2>Comentarios</h2>
     <asp:Label ID="LabelMensaje" runat="server"></asp:Label>
     <asp:LinkButton ID="LinkButton1" runat="server">Agregar Comenterio</asp:LinkButton>
+    <br />
+    <asp:Label ID="LabelMensajeAlerta" runat="server"></asp:Label>
+    <div class="style1">
     <asp:GridView ID="GridViewComentario" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" 
         DataKeyNames="username,id_video,fecha" DataSourceID="SqlDataSourceComentarios" 
@@ -12,12 +21,13 @@
         ShowFooter="True">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField DataField="username" HeaderText="username" ReadOnly="True" 
+            <asp:BoundField DataField="username" HeaderText="Username" ReadOnly="True" 
                 SortExpression="username" />
-            <asp:BoundField DataField="id_video" HeaderText="Codigo video" ReadOnly="True" 
+            <asp:BoundField DataField="id_video" HeaderText="Codigo Video" ReadOnly="True" 
                 SortExpression="id_video" />
-            <asp:BoundField DataField="texto" HeaderText="texto" SortExpression="texto" />
-            <asp:BoundField DataField="fecha" HeaderText="fecha" ReadOnly="True" 
+            <asp:BoundField DataField="texto" HeaderText="Comentario" 
+                SortExpression="texto" />
+            <asp:BoundField DataField="fecha" HeaderText="Fecha" ReadOnly="True" 
                 SortExpression="fecha" />
             <asp:CommandField ShowSelectButton="True" />
         </Columns>
@@ -32,52 +42,41 @@
         <SortedDescendingCellStyle BackColor="#D4DFE1" />
         <SortedDescendingHeaderStyle BackColor="#15524A" />
     </asp:GridView>
+    </div>
     <br />
     <asp:SqlDataSource ID="SqlDataSourceComentarios" runat="server" 
         ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
-        DeleteCommand="DELETE FROM [Comentario] WHERE [username] = @username AND [id_video] = @id_video AND [fecha] = @fecha" 
-        InsertCommand="INSERT INTO [Comentario] ([username], [id_video], [texto], [fecha]) VALUES (@username, @id_video, @texto, @fecha)" 
-        SelectCommand="SELECT [username], [id_video], [texto], [fecha] FROM [Comentario] WHERE ([id_video] = @id_video) ORDER BY [fecha]" 
-        UpdateCommand="UPDATE [Comentario] SET [texto] = @texto WHERE [username] = @username AND [id_video] = @id_video AND [fecha] = @fecha">
-        <DeleteParameters>
-            <asp:Parameter Name="username" Type="String" />
-            <asp:Parameter Name="id_video" Type="Decimal" />
-            <asp:Parameter DbType="Date" Name="fecha" />
-        </DeleteParameters>
-        <InsertParameters>
-            <asp:Parameter Name="username" Type="String" />
-            <asp:Parameter Name="id_video" Type="Decimal" />
-            <asp:Parameter Name="texto" Type="String" />
-            <asp:Parameter DbType="Date" Name="fecha" />
-        </InsertParameters>
+        SelectCommand="SELECT * FROM [Comentario] WHERE ([id_video] = @id_video)">
         <SelectParameters>
             <asp:SessionParameter Name="id_video" SessionField="videoParaComentario" 
                 Type="Decimal" />
         </SelectParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="texto" Type="String" />
-            <asp:Parameter Name="username" Type="String" />
-            <asp:Parameter Name="id_video" Type="Decimal" />
-            <asp:Parameter DbType="Date" Name="fecha" />
-        </UpdateParameters>
     </asp:SqlDataSource>
     <asp:FormView ID="FormViewComentario" runat="server" 
-        DataKeyNames="username,id_video,fecha" 
+        DataKeyNames="id_comentario" 
         DataSourceID="SqlDataSourceComentario" style="margin-right: 1px">
         <EditItemTemplate>
-            &nbsp;<asp:Label ID="usernameLabel1" runat="server" Text='<%# Eval("username") %>' 
-                Visible="False" />
+            username:
+            <asp:TextBox ID="usernameTextBox" runat="server" 
+                Text='<%# Bind("username") %>' />
             <br />
-            &nbsp;<asp:Label ID="id_videoLabel1" runat="server" 
-                Text='<%# Eval("id_video") %>' Visible="False" />
+            id_video:
+            <asp:TextBox ID="id_videoTextBox" runat="server" 
+                Text='<%# Bind("id_video") %>' />
             <br />
-            Comentario
+            texto:
             <asp:TextBox ID="textoTextBox" runat="server" Text='<%# Bind("texto") %>' />
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                ControlToValidate="textoTextBox" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
             <br />
-            Fecha:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="fechaLabel1" runat="server" Text='<%# Eval("fecha") %>' />
+            fecha:
+            <asp:TextBox ID="fechaTextBox" runat="server" Text='<%# Bind("fecha") %>' />
+            <br />
+            ip_cliente:
+            <asp:TextBox ID="ip_clienteTextBox" runat="server" 
+                Text='<%# Bind("ip_cliente") %>' />
+            <br />
+            id_comentario:
+            <asp:Label ID="id_comentarioLabel1" runat="server" 
+                Text='<%# Eval("id_comentario") %>' />
             <br />
             <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" 
                 CommandName="Update" Text="Actualizar" />
@@ -85,100 +84,63 @@
                 CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
         </EditItemTemplate>
         <InsertItemTemplate>
-            <asp:DropDownList ID="DropDownList1" runat="server" 
-                DataSourceID="SqlDataSourceUsername" DataTextField="username" 
-                DataValueField="username" SelectedValue='<%# Bind("username") %>' 
-                Visible="False">
-            </asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSourceUsername" runat="server" 
-                ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
-                SelectCommand="SELECT [username] FROM [Usuario] WHERE ([username] = @username)">
-                <SelectParameters>
-                    <asp:SessionParameter Name="username" SessionField="username" Type="String" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-            <asp:DropDownList ID="DropDownList2" runat="server" 
-                DataSourceID="SqlDataSourceVideo" DataTextField="id_video" 
-                DataValueField="id_video" SelectedValue='<%# Bind("id_video") %>' 
-                Visible="False">
-            </asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSourceVideo" runat="server" 
-                ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
-                SelectCommand="SELECT [id_video] FROM [Video] WHERE ([id_video] = @id_video)">
-                <SelectParameters>
-                    <asp:SessionParameter Name="id_video" SessionField="videoParaComentario" 
-                        Type="Decimal" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-            <asp:DropDownList ID="DropDownList3" runat="server" 
-                SelectedValue='<%# Bind("ip_cliente") %>' Visible="False">
-                <asp:ListItem>12</asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataFecha" 
-                DataTextField="Column1" DataValueField="Column1" 
-                SelectedValue='<%# Bind("fecha") %>' Visible="False">
-            </asp:DropDownList>
+            username:
+            <asp:TextBox ID="usernameTextBox" runat="server" 
+                Text='<%# Bind("username") %>' />
             <br />
-            <asp:SqlDataSource ID="SqlDataFecha" runat="server" 
-                ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
-                SelectCommand="SELECT SYSDATETIME()"></asp:SqlDataSource>
+            id_video:
+            <asp:TextBox ID="id_videoTextBox" runat="server" 
+                Text='<%# Bind("id_video") %>' />
             <br />
-            Comentario:
+            texto:
             <asp:TextBox ID="textoTextBox" runat="server" Text='<%# Bind("texto") %>' />
-            &nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                ControlToValidate="textoTextBox" ErrorMessage="RequiredFieldValidator">*</asp:RequiredFieldValidator>
-            <br />&nbsp;<asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
+            <br />
+            fecha:
+            <asp:TextBox ID="fechaTextBox" runat="server" Text='<%# Bind("fecha") %>' />
+            <br />
+            ip_cliente:
+            <asp:TextBox ID="ip_clienteTextBox" runat="server" 
+                Text='<%# Bind("ip_cliente") %>' />
+            <br />
+
+            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
                 CommandName="Insert" Text="Insertar" />
             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
                 CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
         </InsertItemTemplate>
         <ItemTemplate>
-            Comentario:
+            username:
+            <asp:Label ID="usernameLabel" runat="server" Text='<%# Bind("username") %>' />
+            <br />
+            id_video:
+            <asp:Label ID="id_videoLabel" runat="server" Text='<%# Bind("id_video") %>' />
+            <br />
+            texto:
             <asp:Label ID="textoLabel" runat="server" Text='<%# Bind("texto") %>' />
             <br />
-            Fecha:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="fechaLabel" runat="server" Text='<%# Eval("fecha") %>' />
+            fecha:
+            <asp:Label ID="fechaLabel" runat="server" Text='<%# Bind("fecha") %>' />
             <br />
-            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" 
-                CommandName="Edit" Text="Editar" />
-            &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" 
-                CommandName="Delete" Text="Eliminar" OnClientClick="return confirm(&quot;Seguro que lo desea eliminar ?&quot;);"/>
-            &nbsp;
+            ip_cliente:
+            <asp:Label ID="ip_clienteLabel" runat="server" 
+                Text='<%# Bind("ip_cliente") %>' />
+            <br />
+            id_comentario:
+            <asp:Label ID="id_comentarioLabel" runat="server" 
+                Text='<%# Eval("id_comentario") %>' />
+            <br />
+
         </ItemTemplate>
     </asp:FormView>
     <asp:SqlDataSource ID="SqlDataSourceComentario" runat="server" 
         ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
-        DeleteCommand="DELETE FROM [Comentario] WHERE [username] = @username AND [id_video] = @id_video AND [fecha] = @fecha" 
-        InsertCommand="INSERT INTO Comentario(username, id_video, texto, fecha, ip_cliente) VALUES (@username, @id_video, @texto, @fecha, @ip_cliente)" 
-        SelectCommand="SELECT [username], [id_video], [texto], [fecha] FROM [Comentario] WHERE (([id_video] = @id_video) AND ([fecha] = @fecha) AND ([username] = @username))" 
         
-    UpdateCommand="UPDATE [Comentario] SET [texto] = @texto WHERE [username] = @username AND [id_video] = @id_video AND [fecha] = @fecha">
-        <DeleteParameters>
-            <asp:Parameter Name="username" Type="String" />
-            <asp:Parameter Name="id_video" Type="Decimal" />
-            <asp:Parameter DbType="Date" Name="fecha" />
-        </DeleteParameters>
-        <InsertParameters>
-            <asp:Parameter Name="username" Type="String" />
-            <asp:Parameter Name="id_video" Type="Decimal" />
-            <asp:Parameter Name="texto" Type="String" />
-            <asp:Parameter DbType="Date" Name="fecha" />
-            <asp:Parameter Name="ip_cliente" />
-        </InsertParameters>
+        
+        SelectCommand="SELECT * FROM [Comentario] WHERE ([id_comentario] = @id_comentario)">
         <SelectParameters>
-            <asp:SessionParameter Name="id_video" SessionField="videoParaComentario" 
-                Type="Decimal" />
-            <asp:SessionParameter DbType="Date" Name="fecha" 
-                SessionField="fechaComentario" />
-            <asp:SessionParameter Name="username" SessionField="usernameComentario" 
-                Type="String" />
+            <asp:ControlParameter ControlID="GridViewComentario" Name="id_comentario" 
+                PropertyName="SelectedValue" Type="Int32" />
         </SelectParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="texto" Type="String" />
-            <asp:Parameter Name="username" Type="String" />
-            <asp:Parameter Name="id_video" Type="Decimal" />
-            <asp:Parameter DbType="Date" Name="fecha" />
-        </UpdateParameters>
     </asp:SqlDataSource>
     <br />
     <asp:LinkButton ID="LinkButton2" runat="server">Volver a escoger video</asp:LinkButton>

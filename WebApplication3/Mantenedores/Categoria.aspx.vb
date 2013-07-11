@@ -13,15 +13,48 @@
 
 
     Protected Sub FormViewCategoria_ItemInserted(sender As Object, e As System.Web.UI.WebControls.FormViewInsertedEventArgs) Handles FormViewCategoria.ItemInserted
-        Response.Redirect("Categoria.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "Item agregado Correctamente"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "No se pudo agregar el Item"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewCategoria.DataBind()
     End Sub
 
     Protected Sub FormViewCategoria_ItemDeleted(sender As Object, e As System.Web.UI.WebControls.FormViewDeletedEventArgs) Handles FormViewCategoria.ItemDeleted
-        Response.Redirect("Categoria.aspx")
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "Item eliminado Correctamente"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "No se pudo eliminar el Item"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewCategoria.DataBind()
     End Sub
 
-    Protected Sub FormViewCategoria_ItemUpdated(sender As Object, e As System.Web.UI.WebControls.FormViewUpdatedEventArgs) Handles FormViewCategoria.ItemUpdated
-        Response.Redirect("Categoria.aspx")
+    Protected Sub FormViewCategoria_ItemUpdated(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.FormViewUpdatedEventArgs) Handles FormViewCategoria.ItemUpdated
+        'Manejador de Excepciones 
+        If (e.Exception Is Nothing) Then
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "Item Actualizado Correctamente"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Green
+        Else
+            Me.LabelMensaje.Visible = True
+            Me.LabelMensaje.Text = "No se pudo actualizar el Item"
+            Me.LabelMensaje.ForeColor = Drawing.Color.Red
+            e.ExceptionHandled = True
+        End If
+        GridViewCategoria.DataBind()
     End Sub
 
     Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click

@@ -12,21 +12,26 @@
     
         <br />
         Tipo Reporte:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:DropDownList ID="DropDownList1" runat="server" 
+        <asp:DropDownList ID="DropDownListTipoReporte" runat="server" 
             DataSourceID="SqlDataSourcetipo" DataTextField="nombre" 
             DataValueField="id_tipo_reporte">
         </asp:DropDownList>
         <br />
         Detalle:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="TextBox1" runat="server" Height="100px" Width="177px"></asp:TextBox>
-&nbsp;<asp:SqlDataSource ID="SqlDataSourcetipo" runat="server" 
+        <asp:TextBox ID="TextBoxTipoReporte" runat="server" Height="100px" 
+            Width="177px"></asp:TextBox>
+        <br />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+            ErrorMessage="No puede ser en blanco el detalle" ForeColor="Red" ControlToValidate="TextBoxTipoReporte"></asp:RequiredFieldValidator>
+        <asp:SqlDataSource ID="SqlDataSourcetipo" runat="server" 
             ConnectionString="<%$ ConnectionStrings:LireConnectionString %>" 
             SelectCommand="SELECT * FROM [Tipo_Reporte]"></asp:SqlDataSource>
+        
         <br />
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" onclick="Button1_Click"
-            Text="Insertar" />
+        <asp:Button ID="ButtonReportar" runat="server" onclick="Button1_Click"
+            Text="Reportar" />
         <asp:Button ID="btnOK" runat="server"  Text="Cancelar" />
         <br />
         <asp:SqlDataSource ID="SqlDataSourceReportar" runat="server" 
